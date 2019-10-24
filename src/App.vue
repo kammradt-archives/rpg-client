@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>RESTPG</span>
@@ -27,3 +27,11 @@ export default {
   }),
 };
 </script>
+
+<style>
+  #app {
+    background: #3A1C71;
+    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
+    background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
+  }
+</style>

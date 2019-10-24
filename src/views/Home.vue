@@ -1,16 +1,8 @@
 <template>
     <v-container fluid>
         <v-row>
-            <v-col cols="12" xs="12" md="6" v-for="character in characters" :key="character.id">
-                <v-card>
-                    <Character :character="character"/>
-
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary">text</v-btn>
-                        <v-btn text color="primary">text</v-btn>
-                    </v-card-actions>
-                </v-card>
+            <v-col cols="12" md="6" v-for="character in characters" :key="character.id">
+                <Character :character="character"/>
             </v-col>
         </v-row>
     </v-container>
@@ -38,3 +30,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    v-container {
+        background-color: beige
+    }
+</style>

@@ -1,59 +1,60 @@
 <template>
-    <div>
+    <v-card elevation="12">
         <v-card-title primary-title>
             <span class="headline mb-0" v-text="character.name" />
         </v-card-title>
         <v-card-text>
             <v-row>
-                <v-col class="mx-auto" sm="4" md="2">
+                <v-col class="mx-auto" cols="4">
+                    <Item :item="character.helmet" />
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="4">
                     <v-card height="100">
-                        {{character.helmet ? character.helmet.name : 'No helmet'}}                                    
+                        <Item :item="character.primaryWeapon" />
+                    </v-card>
+                </v-col>
+                <v-col cols="4">
+                    <v-card height="100">
+                        <Item :item="character.armor" />
+                    </v-card>
+                </v-col>
+                <v-col cols="4">
+                    <v-card height="100">
+                        <Item :item="character.secondaryWeapon" />
                     </v-card>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col sm="4" md="2" offset-md="3">
+                <v-col cols="4" offset="4">
                     <v-card height="100">
-                        {{character.primaryWeapon ? character.primaryWeapon.name : 'No Primary weapon'}}                                    
+                        <Item :item="character.pants" />
                     </v-card>
                 </v-col>
-                <v-col sm="4" md="2" >
+                <v-col cols="4" >
                     <v-card height="100">
-                        {{character.armor ? character.armor.name : 'No armor'}}                                    
-                    </v-card>
-                </v-col>
-                <v-col sm="4" md="2">
-                    <v-card height="100">
-                        {{character.secondaryWeapon ? character.secondaryWeapon.name : 'No Secondary weapon'}}                                    
+                        <Item :item="character.gloves" />
                     </v-card>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col sm="4" md="2" offset-md="3">
+                <v-col class="mx-auto" cols="4" >
                     <v-card height="100">
-                        {{character.pants ? character.pants.name : 'No pants'}}                                    
-                    </v-card>
-                </v-col>
-                <v-col sm="4" md="2">
-                    <v-card height="100">
-                        {{character.gloves ? character.gloves.name : 'No gloves'}}                                    
-                    </v-card>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col class="mx-auto" sm="4" md="2">
-                    <v-card height="100">
-                        {{character.shoes ? character.shoes.name : 'No shoes'}}                                    
+                        <Item :item="character.shoes" />
                     </v-card>
                 </v-col>
             </v-row>
         </v-card-text>
-    </div>
+    </v-card>
 </template>
 
 <script>
+import Item from './Item';
+
 export default {
     name: 'Character',
+    components: { Item },
     props: {
         character: Object
     }
