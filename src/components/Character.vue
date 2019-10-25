@@ -1,62 +1,49 @@
 <template>
-    <v-card elevation="12">
-        <v-card-title primary-title>
-            <span class="headline mb-0" v-text="character.name" />
-        </v-card-title>
-        <v-card-text>
-            <v-row>
-                <v-col class="mx-auto" cols="4">
-                    <Item :item="character.helmet" />
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="4">
-                    <v-card height="100">
-                        <Item :item="character.primaryWeapon" />
-                    </v-card>
-                </v-col>
-                <v-col cols="4">
-                    <v-card height="100">
-                        <Item :item="character.armor" />
-                    </v-card>
-                </v-col>
-                <v-col cols="4">
-                    <v-card height="100">
-                        <Item :item="character.secondaryWeapon" />
-                    </v-card>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col cols="4" offset="4">
-                    <v-card height="100">
-                        <Item :item="character.pants" />
-                    </v-card>
-                </v-col>
-                <v-col cols="4" >
-                    <v-card height="100">
-                        <Item :item="character.gloves" />
-                    </v-card>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col class="mx-auto" cols="4" >
-                    <v-card height="100">
-                        <Item :item="character.shoes" />
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-card-text>
-    </v-card>
+  <v-card elevation="12">
+    <p class="display-1 font-weight-light text-center pa-2" v-text="character.name" />
+    <hr color="grey" />
+    <v-card-text>
+      <v-row>
+        <v-col class="mx-auto" cols="4">
+          <ItemCard :item="character.helmet" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="4">
+          <ItemCard :item="character.primaryWeapon" />
+        </v-col>
+        <v-col cols="4">
+          <ItemCard :item="character.armor" />
+        </v-col>
+        <v-col cols="4">
+          <ItemCard :item="character.secondaryWeapon" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="4" offset="4">
+          <ItemCard :item="character.pants" />
+        </v-col>
+        <v-col cols="4">
+          <ItemCard :item="character.gloves" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="mx-auto" cols="4">
+          <ItemCard :item="character.shoes" />
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
-import Item from './Item';
+import ItemCard from "./ItemCard";
 
 export default {
-    name: 'Character',
-    components: { Item },
-    props: {
-        character: Object
-    }
-}
+  name: "Character",
+  components: { ItemCard },
+  props: {
+    character: Object
+  }
+};
 </script>

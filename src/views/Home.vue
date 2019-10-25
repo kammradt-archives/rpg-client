@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Character from '@/components/Character'
 import axios from 'axios'
+import Character from '@/components/Character'
 
 export default {
     name: 'Home',
@@ -30,9 +30,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    v-container {
-        background-color: beige
-    }
-</style>
