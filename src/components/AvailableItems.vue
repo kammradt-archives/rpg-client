@@ -12,30 +12,33 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 import ItemCard from "@/components/ItemCard";
 
 export default {
-  data: () => ({
-    items: []
-  }),
-  computed: {
-    formattedName() {
-      return this.itemCategory.charAt(0).toUpperCase() + this.itemCategory.slice(1);
-    }
-  },
+  name: "AvailableItems",
   props: {
     itemCategory: String
   },
   components: {
     ItemCard
   },
+  data: () => ({
+    items: []
+  }),
   mounted() {
-    this.getItems()
+    this.getItems();
+  },
+  computed: {
+    formattedName() {
+      return (
+        this.itemCategory.charAt(0).toUpperCase() + this.itemCategory.slice(1)
+      );
+    }
   },
   methods: {
     getItems() {
-      let url = `http://localhost:8080/${this.itemCategory}/index`
+      let url = `http://localhost:8080/${this.itemCategory}/index`;
       axios.get(url).then(response => {
         this.items = response.data;
       });

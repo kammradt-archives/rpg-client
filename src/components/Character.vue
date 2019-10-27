@@ -41,9 +41,9 @@ import ItemCard from "./ItemCard";
 
 export default {
   name: "Character",
-  components: { ItemCard },
   props: {
     character: Object
-  }
+  },
+  components: { ItemCard },
 };
 </script>
