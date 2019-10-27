@@ -1,5 +1,5 @@
 <template>
-  <v-card  :disabled="dontHaveItem">
+  <v-card :disabled="dontHaveItem">
     <p v-text="itemName" class="font-weight-medium text-center headline mb-0" />
     <v-row>
       <v-col cols="12" sm="6" class="pt-3 text-center">
