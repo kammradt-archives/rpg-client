@@ -63,17 +63,28 @@ import ItemCard from "./ItemCard";
 export default {
   name: "Character",
   props: {
-    character: Object,
+    id: Number,
     newItem: Object 
   },
   components: { ItemCard },
+  data() {
+    return {
+      character: {}
+    }
+  },
+  mounted() {
+    this.getCharacter()
+  },
   watch: {
     newItem() {
       let url = `http://localhost:8080/character/update`;
       this.character[this.newItem.category] = this.newItem.id;
       axios.put(url, this.character).then(() => {
-        this.$emit("refreshCharacters");
+        this.getCharacter()
       });
+    },
+    id() {
+      this.getCharacter()
     }
   },
   methods: {
@@ -83,6 +94,12 @@ export default {
       axios.put(url, this.character).then(() => {
         this.$emit("refreshCharacters");
       });
+    },
+    getCharacter() {
+      let url = `http://localhost:8080/character/show/${this.id}`;
+      axios.get(url).then(response => {
+        this.character = response.data
+      })   
     }
   }
 };
