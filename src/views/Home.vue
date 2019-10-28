@@ -3,15 +3,20 @@
     <v-row>
       
       <v-col cols="12" md="6">
-        <Character :character="characters[0]" />
+        <Character
+          @refreshCharacters="getCharacters"
+          :character="characters[0]"
+          :newItem="newItem"
+        />
       </v-col>
 
-      <v-col>
+      <v-col cols="12" md="6">
         <v-expansion-panels>
           <AvailableItems
             v-for="equipamentCategory in equipaments"
             :key="equipamentCategory"
             :itemCategory="equipamentCategory"
+            @equip="equip"
           />
         </v-expansion-panels>
       </v-col>
@@ -30,6 +35,7 @@ export default {
   components: { Character, AvailableItems},
   data: () => ({
     characters: [],
+    newItem: {},
     equipaments: ['helmet', 'armor', 'pants', 'gloves', 'shoes']
   }),
   mounted() {
@@ -40,6 +46,9 @@ export default {
       axios.get("http://localhost:8080/character/index").then(response => {
         this.characters = response.data;
       });
+    },
+    equip(e) {
+      this.newItem = e
     }
   }
 };

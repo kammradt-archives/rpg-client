@@ -4,7 +4,7 @@
     <v-expansion-panel-content>
       <v-row>
         <v-col v-for="item in items" :key="item.id" cols="6" sm="4">
-          <ItemCard :item="item" />
+          <ItemCard :category="itemCategory" @equip="equip" :item="item" />
         </v-col>
       </v-row>
     </v-expansion-panel-content>
@@ -42,6 +42,9 @@ export default {
       axios.get(url).then(response => {
         this.items = response.data;
       });
+    },
+    equip(e) {
+      this.$emit('equip', e)
     }
   }
 };
