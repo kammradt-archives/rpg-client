@@ -49,7 +49,7 @@ export default {
     characters: [],
     currentCharacter: 1,
     newItem: {},
-    equipaments: ["helmet", "armor", "pants", "gloves", "shoes"],
+    equipaments: ["helmet", "armor", "pants", "gloves", "shoes", 'weapon'],
     fab: false
   }),
   mounted() {

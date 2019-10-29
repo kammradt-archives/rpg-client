@@ -53,6 +53,14 @@
         </v-col>
       </v-row>
     </v-card-text>
+    <v-snackbar
+      v-model="snackbar"
+      color="info"
+      top
+    >
+      {{ 'Some weapons are Dual Handed, and can only be equipped alone, like the Fight Club :)' }}
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -64,27 +72,41 @@ export default {
   name: "Character",
   props: {
     id: Number,
-    newItem: Object 
+    newItem: Object
   },
   components: { ItemCard },
   data() {
     return {
-      character: {}
-    }
+      character: {},
+      snackbar: false
+    };
   },
   mounted() {
-    this.getCharacter()
+    this.getCharacter();
   },
   watch: {
     newItem() {
       let url = `http://localhost:8080/character/update`;
+      if (this.newItem.category === "weapon") {
+        if (this.character.primaryWeapon) {
+          if (this.character.primaryWeapon.isTwoHanded) {
+            this.newItem.category = "primaryWeapon";
+            this.unequip({});
+          } else {
+            this.newItem.category = "secondaryWeapon";
+            this.snackbar = true
+          }
+        } else {
+          this.newItem.category = "primaryWeapon";
+        }
+      }
       this.character[this.newItem.category] = this.newItem.id;
       axios.put(url, this.character).then(() => {
-        this.getCharacter()
+        this.getCharacter();
       });
     },
     id() {
-      this.getCharacter()
+      this.getCharacter();
     }
   },
   methods: {
@@ -98,8 +120,8 @@ export default {
     getCharacter() {
       let url = `http://localhost:8080/character/show/${this.id}`;
       axios.get(url).then(response => {
-        this.character = response.data
-      })   
+        this.character = response.data;
+      });
     }
   }
 };
